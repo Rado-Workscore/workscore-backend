@@ -17,4 +17,5 @@ uvicorn==0.34.0
 python-jose
 passlib[bcrypt]
 databases
+asyncpg
 
