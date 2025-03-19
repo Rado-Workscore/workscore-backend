@@ -1,15 +1,18 @@
-from sqlalchemy import Table, Column, Integer, String, Float
-from database import metadata
+from sqlalchemy import Table, Column, Integer, String, Float, MetaData
+from sqlalchemy.orm import declarative_base
 
-employees = Table(
-    "employees",
-    metadata,
-    Column("id", Integer, primary_key=True, index=True),
-    Column("employee_id", String, unique=True, index=True),
-    Column("accuracy_score", Float),
-    Column("compliance_score", Float),
-    Column("speed_score", Float),
-    Column("trajectory_score", Float),
-    Column("work_score", Float)
-)
+Base = declarative_base()  # Սրանք թույլ կտան Alembic-ին հայտնաբերել մոդելները
+metadata = Base.metadata  
+
+class Employee(Base):
+    __tablename__ = "employees"
+
+    id = Column(Integer, primary_key=True, index=True)
+    employee_id = Column(String, unique=True, index=True)
+    accuracy_score = Column(Float)
+    compliance_score = Column(Float)
+    speed_score = Column(Float)
+    trajectory_score = Column(Float)
+    work_score = Column(Float)
+
 
